@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Run</title>
+</head>
+<body>
+  <h1>Update Runs JSON</h1>
+  <button id="fetchBtn">Fetch Current Runs</button>
+
+  <h2>Add New Run</h2>
+  <label>Game: <input type="text" id="game"></label><br>
+  <label>Section: <input type="text" id="section"></label><br>
+  <label>Category: <input type="text" id="category"></label><br>
+  <label>Runner: <input type="text" id="runner"></label><br>
+  <label>Time: <input type="text" id="time"></label><br>
+  <label>Video URL: <input type="text" id="video"></label><br>
+  <button id="addBtn">Add Run & Copy JSON</button>
+
+    <pre id="jsonDisplay"></pre>
+
+  <script>
+    let runsData = { "runs": [] };
+    const jsonDisplay = document.getElementById('jsonDisplay');
+
+    // Fetch current JSON from GitHub
+    document.getElementById('fetchBtn').addEventListener('click', async () => {
+      const res = await fetch('https://raw.githubusercontent.com/PWebGames/leaderboards/refs/heads/main/runs.json');
+      runsData = await res.json();
+      jsonDisplay.textContent = JSON.stringify(runsData, null, 2);
+    });
+
+    // Add new run and copy updated JSON
+    document.getElementById('addBtn').addEventListener('click', () => {
+      const newRun = {
+        game: document.getElementById('game').value,
+        section: document.getElementById('section').value,
+        category: document.getElementById('category').value,
+        runner: document.getElementById('runner').value,
+        time: document.getElementById('time').value,
+        video: document.getElementById('video').value
+      };
+
+      // Simple validation
+      if (Object.values(newRun).some(v => !v)) {
+        return;
+      }
+
+      // Add new run to the array
+      runsData.runs.push(newRun);
+
+      // Update display
+      jsonDisplay.textContent = JSON.stringify(runsData, null, 2);
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(JSON.stringify(runsData, null, 2))
+        .then(() => console.log('Updated JSON copied to clipboard!'))
+        .catch(err => console.log('Failed to copy: ' + err));
+    });
+  </script>
+</body>
+</html>
