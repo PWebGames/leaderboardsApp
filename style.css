@@ -1,0 +1,131 @@
+/* ------------------ */
+/* General body and text */
+body {
+  font-family: Arial, sans-serif;
+  background: #121212;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Page title */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* App container */
+#app {
+  margin-top: 20px;
+  padding-bottom: 50px; /* extra space for sticky slider */
+}
+
+/* ------------------ */
+/* Game slider (sticky top) */
+.game-bar-container {
+  position: sticky;
+  top: 0;
+  background-color: #1a1a1a;
+  padding: 10px 0;
+  z-index: 1000;
+  border-bottom: 1px solid #333;
+}
+
+/* Slider scrollable, hidden scrollbar */
+.slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 0 10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  cursor: grab;
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.slider.active {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* Game cards */
+.card {
+  min-width: 200px;
+  height: 120px;
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.card:hover {
+  transform: scale(1.05);
+  background: #3a3a3a;
+}
+
+/* ------------------ */
+/* Grid for sections and categories */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* Back buttons */
+button.back {
+  background: #444;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: white;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+button.back:hover {
+  background: #666;
+}
+
+/* ------------------ */
+/* Leaderboard table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border-bottom: 1px solid #444;
+  padding: 8px;
+  text-align: left;
+}
+
+/* ------------------ */
+/* Submit button */
+.submit-btn {
+  display: block;
+  margin: 10px auto 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+/* ------------------ */
+/* Optional: scrollbar styling (hidden, for completeness) */
+.slider::-webkit-scrollbar {
+  height: 0; /* hides it completely */
+}
