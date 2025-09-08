@@ -3,7 +3,7 @@ let data = { games: [] };
 const app = document.getElementById("app");
 
 // Load the runs.json file
-fetch("runs.json")
+fetch("https://raw.githubusercontent.com/PWebGames/leaderboards/refs/heads/main/runs.json")
   .then(res => res.json())
   .then(json => {
     rawData = json.runs;
