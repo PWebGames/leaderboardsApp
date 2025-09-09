@@ -159,6 +159,9 @@ function showRuns(game, section, category) {
     <h2>${game.name} → ${section.name} → ${category.name} - Runs</h2>
   `;
 
+  // ✅ sort runs by fastest (smallest numeric time first)
+  const sortedRuns = [...category.runs].sort((a, b) => Number(a.time) - Number(b.time));
+
   const table = document.createElement("table");
   table.innerHTML = `
     <thead>
@@ -169,7 +172,7 @@ function showRuns(game, section, category) {
       </tr>
     </thead>
     <tbody>
-      ${category.runs.map(run => `
+      ${sortedRuns.map(run => `
         <tr>
           <td>${run.runner}</td>
           <td>${run.time}</td>
@@ -180,6 +183,15 @@ function showRuns(game, section, category) {
   `;
 
   app.appendChild(table);
+
+  // ✅ Dev-only button
+  if (localStorage.getItem("dev") === "true") {
+    const devBtn = document.createElement("button");
+    devBtn.className = "dev-btn";
+    devBtn.textContent = "Open JSON Editor";
+    devBtn.onclick = () => window.location.href = "/json.html";
+    app.appendChild(devBtn);
+  }
 }
 
 if ("serviceWorker" in navigator) {

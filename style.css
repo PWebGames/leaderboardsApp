@@ -129,3 +129,17 @@ th, td {
 .slider::-webkit-scrollbar {
   height: 0; /* hides it completely */
 }
+
+.dev-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #0078d7;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+.dev-btn:hover {
+  background: #005fa3;
+}
